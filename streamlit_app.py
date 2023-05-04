@@ -4,6 +4,21 @@ import requests
 import snowflake.connector
 from urllib.error import URLError
 
+#first paragraph of menu and all.
+streamlit.title('Just startede with GitHub & Streamlit!')
+
+streamlit.header('Going with the Badge code for practice! Menu Card it is!')
+streamlit.text('🥣Aloo Paratha')
+streamlit.text('🥗Gobi Paratha')
+streamlit.text('🐔Chicken Sandwitch')
+streamlit.text('🐔Chicken Soup')
+
+streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
+
+#import pandas
+my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
+my_fruit_list = my_fruit_list.set_index('Fruit')
+
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT * from fruit_load_list")
@@ -22,19 +37,7 @@ my_cur.execute("insert into FRUIT_LOAD_LIST values ('from streamlit')")
 
 #import streamlit
 
-streamlit.title('Just startede with GitHub & Streamlit!')
 
-streamlit.header('Going with the Badge code for practice! Menu Card it is!')
-streamlit.text('🥣Aloo Paratha')
-streamlit.text('🥗Gobi Paratha')
-streamlit.text('🐔Chicken Sandwitch')
-streamlit.text('🐔Chicken Soup')
-
-streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
-
-#import pandas
-my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
-my_fruit_list = my_fruit_list.set_index('Fruit')
 
 # new section to display fruityvice api response
 streamlit.header("Fruityvice Fruit Advice!")
