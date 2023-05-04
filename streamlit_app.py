@@ -41,6 +41,7 @@ try:
 except URLError as e:
   streamlit.error()
 
+  
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT * from fruit_load_list")
@@ -48,15 +49,28 @@ my_data_rows = my_cur.fetchall()
 streamlit.header("The Fruit load list contains:")
 streamlit.dataframe(my_data_rows)
 
+streamlit.header("The Fruit load list contains:")
+#snowflake related function
+def get_fruit_load_list:
+  with my_cnx.cursor() as my_cur:
+    my_cur.execute("SELECT * from fruit_load_list")
+    return my_cur.fetchall()
+  
+# add a bottom to load a fruit
+if streamlit.button('Get fruit load list'):
+  my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+  my_data_rows = get_fruit_load_list()
+  streamlit.dataframe(my_data_rows)
+  
 
 
 # new section to display fruityvice api response
-streamlit.header("Fruit Advice!")
-add_my_fruit = streamlit.text_input('What fruit would you like information about?','apple')
-streamlit.write('The user entered ', add_my_fruit)
+#streamlit.header("Fruit Advice!")
+#add_my_fruit = streamlit.text_input('What fruit would you like information about?','apple')
+#streamlit.write('The user entered ', add_my_fruit)
 
 # this is for testing purpose, may be work may be not. Lets find out!
-my_cur.execute("insert into FRUIT_LOAD_LIST values ('from streamlit')")
+#my_cur.execute("insert into FRUIT_LOAD_LIST values ('from streamlit')")
 
 
 #import streamlit
