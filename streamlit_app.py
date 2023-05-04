@@ -105,7 +105,7 @@ if streamlit.button('Add fruit to a list'):
 
 
 # don't run the above part as we're working on fixing it.
-#streamlit.stop()
+streamlit.stop()
 
 
 
